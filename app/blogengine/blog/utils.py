@@ -1,8 +1,6 @@
 from django.shortcuts import render, get_object_or_404, redirect
 from django.urls import reverse
 
-from .models import Post, Tag
-
 
 class ObjectDetailMixin:
     model = None
@@ -12,7 +10,7 @@ class ObjectDetailMixin:
         obj = get_object_or_404(self.model,
                                 slug__iexact=slug)
         return render(request, self.template,
-                      context={self.model.__name__.lower(): obj})
+                      context={self.model.__name__.lower(): obj, 'obj': obj})
 
 
 class ObjectCreateMixin:
